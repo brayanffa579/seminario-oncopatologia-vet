@@ -1,0 +1,16 @@
+[build]
+  base = "artifacts/oncopatologia-2026"
+  command = "pnpm install --frozen-lockfile=false && NODE_ENV=production BASE_PATH=/ pnpm run build"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "24"
+  NPM_FLAGS = "--version"
+  PNPM_VERSION = "9"
+  NODE_ENV = "production"
+  BASE_PATH = "/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
