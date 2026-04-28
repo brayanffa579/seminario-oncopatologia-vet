@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar, Users, Microscope, ChevronDown } from "lucide-react";
+import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -63,6 +63,7 @@ export default function Home() {
             <a href="#tematica" className="hover:text-primary transition-colors">Temática</a>
             <a href="#ponentes" className="hover:text-primary transition-colors">Ponentes</a>
             <a href="#precios" className="hover:text-primary transition-colors">Precios</a>
+            <a href="#resumenes" className="hover:text-primary transition-colors">Resúmenes</a>
             <a href="#lugar" className="hover:text-primary transition-colors">Lugar</a>
           </div>
           <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -96,7 +97,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-5xl tracking-tight text-white mb-6 leading-tight"
           >
-            Seminario Colombiano Internacional de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Oncopatología Veterinaria 2026</span>
+            Seminario Internacional de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Oncopatología Veterinaria 2026</span>
           </motion.h1>
 
           <motion.p 
@@ -348,6 +349,210 @@ export default function Home() {
             <Button size="lg" className="bg-secondary text-white hover:bg-secondary/90 px-8 py-6 text-lg">
               Realizar Pago / Inscripción
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Resúmenes científicos / Pósters */}
+      <section id="resumenes" className="py-24 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-6xl relative z-10">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center space-x-2 bg-secondary/15 text-secondary border border-secondary/30 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+              <FileText className="w-4 h-4" />
+              <span>Convocatoria abierta</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Presentación de Resúmenes Científicos en Pósters</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              El Comité Organizador invita a profesionales, investigadores, docentes y estudiantes de medicina veterinaria y áreas afines a presentar resúmenes científicos para su exposición en modalidad póster.
+            </p>
+          </div>
+
+          {/* Objetivo */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <Card className="bg-card/60 backdrop-blur border-border/60 hover:border-primary/40 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center">
+                    <BookOpen className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Objetivo</h3>
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  Promover la difusión de avances científicos en oncopatología veterinaria y patología comparada del cáncer, con énfasis en el diagnóstico clínico, histopatológico, anatomopatológico y el uso de técnicas innovadoras.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/60 backdrop-blur border-border/60 hover:border-secondary/40 transition-colors">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/15 flex items-center justify-center">
+                    <Calendar className="w-5 h-5 text-secondary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Fechas importantes</h3>
+                </div>
+                <ul className="space-y-3 text-muted-foreground">
+                  <li className="flex justify-between gap-4 pb-2 border-b border-border/40">
+                    <span>Inicio de recepción</span>
+                    <span className="text-foreground font-medium whitespace-nowrap">1 de mayo de 2026</span>
+                  </li>
+                  <li className="flex justify-between gap-4 pb-2 border-b border-border/40">
+                    <span>Límite de envío</span>
+                    <span className="text-foreground font-medium whitespace-nowrap">15 de agosto de 2026</span>
+                  </li>
+                  <li className="flex justify-between gap-4">
+                    <span>Notificación de aceptación</span>
+                    <span className="text-foreground font-medium whitespace-nowrap">30 de agosto de 2026</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Ejes temáticos */}
+          <Card className="bg-card/60 backdrop-blur border-border/60 mb-12">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-accent/15 flex items-center justify-center">
+                  <Microscope className="w-5 h-5 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold">Ejes temáticos</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-5">Los trabajos deberán enmarcarse en uno o más de los siguientes ejes:</p>
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  "Patología veterinaria oncológica (innovación, IA, patología digital, telepatología)",
+                  "Diagnóstico histopatológico y anatomopatológico de neoplasias en animales",
+                  "Correlación clínico–patológica en oncología veterinaria",
+                  "Técnicas moleculares y diagnóstico avanzado: PCR, RT-PCR, qPCR, IHQ, hibridación in situ, secuenciación y biomarcadores",
+                  "Oncopatología veterinaria: clasificación tumoral, marcadores pronósticos y patogénesis del cáncer",
+                  "Patología comparada (animal–humano, modelos animales de cáncer humano)"
+                ].map((eje, i) => (
+                  <div key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+                    <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/15 text-primary text-xs font-semibold flex items-center justify-center mt-0.5">{i + 1}</span>
+                    <span className="leading-relaxed">{eje}</span>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Requisitos del resumen + Modalidad póster */}
+          <div className="grid md:grid-cols-2 gap-6 mb-12">
+            <Card className="bg-card/60 backdrop-blur border-border/60">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-primary/15 flex items-center justify-center">
+                    <ClipboardList className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Requisitos del resumen</h3>
+                </div>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Fuente:</strong> Times New Roman, 12 pt, interlineado doble.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Extensión máxima:</strong> 300 palabras (~2.000 caracteres), excluyendo título y autores.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Idioma:</strong> español, portugués o inglés.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Estructura obligatoria:</strong> título, autores, autor de correspondencia (nombre completo, afiliación, correo, institución, país), palabras clave (máx. 5).</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Texto del resumen:</strong> introducción, objetivo, materiales y métodos, resultados, conclusiones.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span>Debe incluir descripción histopatológica detallada y un diagnóstico histopatológico final.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" /><span>Se aceptan reportes de casos, trabajos originales, resultados preliminares y revisiones de literatura.</span></li>
+                </ul>
+                <p className="mt-5 text-xs text-muted-foreground/80 italic">
+                  Se valorará positivamente el uso de técnicas diagnósticas complementarias (moleculares, inmunohistoquímicas) y el enfoque de patología comparada con humanos.
+                </p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-card/60 backdrop-blur border-border/60">
+              <CardContent className="p-8">
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="w-10 h-10 rounded-lg bg-secondary/15 flex items-center justify-center">
+                    <FileText className="w-5 h-5 text-secondary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">Únicamente modalidad póster</h3>
+                </div>
+                <ul className="space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Formato:</strong> vertical.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Dimensiones sugeridas:</strong> 90 cm x 120 cm.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span><strong className="text-foreground">Contenido mínimo:</strong> título, autores y afiliación.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span>Introducción y objetivo.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span>Metodología.</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span>Resultados (incluyendo imágenes macroscópicas o microscópicas).</span></li>
+                  <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" /><span>Conclusiones.</span></li>
+                </ul>
+                <div className="mt-5 p-4 rounded-lg bg-primary/10 border border-primary/20 text-xs text-foreground/90 leading-relaxed">
+                  Únicamente se considerarán resúmenes que se ajusten rigurosamente a los parámetros establecidos. Solo se presentan los pósters de participantes que hayan pagado su inscripción.
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
+          {/* Premiación */}
+          <Card className="bg-gradient-to-br from-primary/10 via-card/60 to-secondary/10 backdrop-blur border-border/60 mb-12">
+            <CardContent className="p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center">
+                  <Award className="w-5 h-5 text-accent" />
+                </div>
+                <h3 className="text-xl font-semibold">Premiación</h3>
+              </div>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-sm uppercase tracking-wider text-primary font-semibold mb-3">Categorías de reconocimiento</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Diagnóstico patológico</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Innovación</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Patología comparada</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-primary"></span>Mejor trabajo estudiantil</li>
+                  </ul>
+
+                  <h4 className="text-sm uppercase tracking-wider text-secondary font-semibold mt-6 mb-3">Criterios diferenciales</h4>
+                  <ul className="space-y-2 text-sm text-muted-foreground">
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>Innovación técnica</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>Impacto en salud pública o clínica</li>
+                    <li className="flex items-center gap-2"><span className="w-1.5 h-1.5 rounded-full bg-secondary"></span>Relevancia en patología comparada con humanos</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-sm uppercase tracking-wider text-accent font-semibold mb-3">Premios para los mejores trabajos</h4>
+                  <ul className="space-y-3 text-sm text-muted-foreground">
+                    <li className="flex items-start gap-2">
+                      <Award className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>Publicación del artículo completo (1°, 2° y 3° puesto) en las memorias de la <em>Revista de Investigación Pecuaria de la Universidad de Nariño</em>.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>Membresía LCPG 2027 para los autores presentadores del 1°, 2° y 3° puesto.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Award className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                      <span>Reconocimiento escrito.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* CTA al formulario */}
+          <div className="text-center bg-card/40 backdrop-blur border border-border/60 rounded-2xl p-10">
+            <h3 className="text-2xl md:text-3xl font-bold mb-3">Envío de resúmenes</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+              Registra tu resumen completando el formulario oficial. ¡Esperamos tu participación para fortalecer la oncopatología veterinaria desde una perspectiva diagnóstica, molecular y comparativa!
+            </p>
+            <a
+              href="https://forms.gle/kzTP7N56HkPdQTwo8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg shadow-primary/20"
+              data-testid="link-submit-abstract"
+            >
+              <Send className="w-5 h-5" />
+              Enviar mi resumen
+            </a>
+            <p className="mt-4 text-xs text-muted-foreground/80 break-all">
+              forms.gle/kzTP7N56HkPdQTwo8
+            </p>
           </div>
         </div>
       </section>
