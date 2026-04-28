@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 
 import bannerMain from "@assets/1_1777148830299.png";
 import bannerTematica from "@assets/Temática_DTF_LCPG_Colombia_2026_1777148830300.png";
+import bannerResumenes from "@assets/generated_images/resumenes_bg.png";
 import speakerMeuten from "@assets/4_1777148830299.png";
 import speakerClemente from "@assets/5_1777148830299.png";
 import speakerRocha from "@assets/6_1777148830300.png";
@@ -355,7 +356,11 @@ export default function Home() {
 
       {/* Resúmenes científicos / Pósters */}
       <section id="resumenes" className="py-24 bg-background relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5 pointer-events-none"></div>
+        <div className="absolute inset-0 z-0">
+          <img src={bannerResumenes} alt="Salud animal y oncopatología" className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/10 pointer-events-none"></div>
+        </div>
         <div className="container mx-auto px-4 max-w-6xl relative z-10">
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-secondary/15 text-secondary border border-secondary/30 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
@@ -540,16 +545,28 @@ export default function Home() {
             <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
               Registra tu resumen completando el formulario oficial. ¡Esperamos tu participación para fortalecer la oncopatología veterinaria desde una perspectiva diagnóstica, molecular y comparativa!
             </p>
-            <a
-              href="https://forms.gle/kzTP7N56HkPdQTwo8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg shadow-primary/20"
-              data-testid="link-submit-abstract"
-            >
-              <Send className="w-5 h-5" />
-              Enviar mi resumen
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="https://forms.gle/kzTP7N56HkPdQTwo8"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-primary text-primary-foreground hover:bg-primary/90 px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg shadow-primary/20"
+                data-testid="link-submit-abstract"
+              >
+                <Send className="w-5 h-5" />
+                Enviar mi resumen
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}instrucciones-resumenes.pdf`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-secondary text-white hover:bg-secondary/90 px-8 py-4 rounded-lg text-lg font-semibold transition-colors shadow-lg shadow-secondary/20"
+                data-testid="link-submission-instructions"
+              >
+                <FileText className="w-5 h-5" />
+                Instrucciones de Envío
+              </a>
+            </div>
             <p className="mt-4 text-xs text-muted-foreground/80 break-all">
               forms.gle/kzTP7N56HkPdQTwo8
             </p>
