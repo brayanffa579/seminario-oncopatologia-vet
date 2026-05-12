@@ -68,9 +68,14 @@ export default function Home() {
             <a href="#resumenes" className="hover:text-primary transition-colors">Resúmenes</a>
             <a href="#lugar" className="hover:text-primary transition-colors">Lugar</a>
           </div>
-          <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">
+          <a
+            href="https://forms.gle/dTzxtuDDPSCvaEeU8"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+          >
             Reserva tu cupo
-          </Button>
+          </a>
         </div>
       </nav>
 
@@ -408,9 +413,14 @@ export default function Home() {
           </div>
           
           <div className="mt-12 text-center">
-            <Button size="lg" className="bg-secondary text-white hover:bg-secondary/90 px-8 py-6 text-lg">
+            <a
+              href="https://forms.gle/dTzxtuDDPSCvaEeU8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-secondary text-white hover:bg-secondary/90 px-8 py-6 rounded-lg text-lg font-semibold transition-colors shadow-lg shadow-secondary/20"
+            >
               Realizar Pago / Inscripción
-            </Button>
+            </a>
           </div>
         </div>
       </section>
