@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2, PlayCircle, UserPlus } from "lucide-react";
 import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -61,6 +61,7 @@ export default function Home() {
           <div className="hidden md:flex space-x-6 text-sm font-medium">
             <a href="#inicio" className="hover:text-primary transition-colors">Inicio</a>
             <a href="#sobre" className="hover:text-primary transition-colors">Sobre el Evento</a>
+            <a href="#video" className="hover:text-primary transition-colors">Video</a>
             <a href="#tematica" className="hover:text-primary transition-colors">Temática</a>
             <a href="#ponentes" className="hover:text-primary transition-colors">Ponentes</a>
             <a href="#precios" className="hover:text-primary transition-colors">Precios</a>
@@ -146,6 +147,66 @@ export default function Home() {
           <p className="text-lg text-muted-foreground leading-relaxed">
             La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en la Universidad de Nariño (Nariño - Colombia).
           </p>
+        </div>
+      </section>
+
+      {/* Video instructivo */}
+      <section id="video" className="py-24 bg-background relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-background to-secondary/8 pointer-events-none"></div>
+        <div className="container mx-auto px-4 max-w-4xl relative z-10">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center space-x-2 bg-primary/15 text-primary border border-primary/30 px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+              <PlayCircle className="w-4 h-4" />
+              <span>Video instructivo</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold">Video instructivo</h2>
+          </div>
+
+          {/* Marco decorativo del video */}
+          <div className="relative mx-auto max-w-3xl">
+            {/* Capa exterior con gradiente llamativo */}
+            <div className="rounded-2xl p-[3px] bg-gradient-to-br from-primary via-secondary to-accent shadow-2xl shadow-primary/30">
+              {/* Capa interior oscura */}
+              <div className="rounded-[14px] bg-background/95 p-3">
+                {/* Esquinas decorativas */}
+                <div className="relative rounded-xl overflow-hidden" style={{ aspectRatio: '16/9' }}>
+                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary rounded-tl-lg z-10 pointer-events-none"></div>
+                  <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary rounded-tr-lg z-10 pointer-events-none"></div>
+                  <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-secondary rounded-bl-lg z-10 pointer-events-none"></div>
+                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary rounded-br-lg z-10 pointer-events-none"></div>
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    src="https://www.youtube.com/embed/0EuYHoSGLd0?si=NZBEK8NRnFZA0_8_"
+                    title="Video instructivo – Seminario Internacional de Oncopatología Veterinaria 2026"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full rounded-xl"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            {/* Resplandor ambiental detrás del marco */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-secondary/15 to-accent/20 rounded-3xl blur-2xl -z-10"></div>
+          </div>
+
+          {/* CTA de inscripción */}
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
+            <a
+              href="https://forms.gle/dTzxtuDDPSCvaEeU8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-accent text-white hover:bg-accent/90 px-8 py-4 rounded-lg text-lg font-semibold transition-all shadow-lg shadow-accent/30 hover:scale-105"
+            >
+              <UserPlus className="w-5 h-5" />
+              Inscríbete aquí como participante
+            </a>
+            <p className="text-muted-foreground text-sm max-w-xs text-center sm:text-left leading-snug">
+              Si ya tienes tu recibo de pago, regístrate en el botón.
+            </p>
+          </div>
         </div>
       </section>
 
