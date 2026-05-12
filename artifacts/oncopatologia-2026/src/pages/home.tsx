@@ -128,7 +128,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-3 text-white/90 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/10">
               <MapPin className="w-5 h-5 text-accent" />
-              <span>Universidad de Nariño, Pasto</span>
+              <span>Hotel Morasurco, Pasto</span>
             </div>
           </motion.div>
 
@@ -150,7 +150,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Sobre el Evento</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en la Universidad de Nariño (Nariño - Colombia).
+            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en el Hotel Morasurco de Pasto, Nariño, Colombia.
           </p>
         </div>
       </section>
@@ -651,18 +651,18 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-6">Sede del Evento</h2>
-              <h3 className="text-2xl text-primary font-semibold mb-4">Universidad de Nariño</h3>
+              <h3 className="text-2xl text-primary font-semibold mb-4">Hotel Morasurco</h3>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Pasto, Colombia, te espera. Una de las ciudades andinas más hermosas del país, a los pies del imponente volcán Galeras, reconocida por su riqueza cultural, gastronómica y calidez humana.
               </p>
               <div className="flex items-center gap-3 text-muted-foreground mb-8 bg-card p-4 rounded-lg border border-border">
                 <MapPin className="w-6 h-6 text-accent flex-shrink-0" />
-                <span>Universidad de Nariño, Cl. 18 #50-02, Pasto, Nariño, Colombia</span>
+                <span>Hotel Morasurco, Cra. 22 #18-19, Pasto, Nariño, Colombia</span>
               </div>
             </div>
             <div className="h-[400px] rounded-xl overflow-hidden border border-border/50 shadow-xl">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.9482598363717!2d-77.29415512401655!3d1.230554598758064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e2ed487376c70b7%3A0xa59b720b080f53d7!2sUniversidad%20de%20Nari%C3%B1o!5e0!3m2!1sen!2sus!4v1709605204481!5m2!1sen!2sus" 
+                src="https://maps.google.com/maps?q=Hotel+Morasurco+Pasto+Colombia&output=embed&z=16" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
