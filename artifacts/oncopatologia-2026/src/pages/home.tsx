@@ -1,7 +1,8 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2, PlayCircle, UserPlus } from "lucide-react";
-import { motion } from "framer-motion";
+import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2, PlayCircle, UserPlus, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import bannerMain from "@assets/1_1777148830299.png";
@@ -53,8 +54,96 @@ const speakers = [
 ];
 
 export default function Home() {
+  const [splashOpen, setSplashOpen] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setSplashOpen(true), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-background font-sans text-foreground">
+
+      {/* ── Rompepantallas: video de presentación ── */}
+      <AnimatePresence>
+        {splashOpen && (
+          <motion.div
+            key="splash-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-8"
+            style={{ background: "rgba(5,10,30,0.88)", backdropFilter: "blur(10px)" }}
+            onClick={() => setSplashOpen(false)}
+          >
+            <motion.div
+              key="splash-card"
+              initial={{ opacity: 0, scale: 0.88, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.92, y: 20 }}
+              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full max-w-3xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Resplandor ambiental */}
+              <div className="absolute -inset-6 bg-gradient-to-br from-primary/30 via-secondary/20 to-accent/25 rounded-3xl blur-3xl -z-10" />
+
+              {/* Marco exterior con gradiente */}
+              <div className="rounded-2xl p-[3px] bg-gradient-to-br from-primary via-secondary to-accent shadow-2xl shadow-primary/40">
+                <div className="rounded-[14px] bg-[#07101f] p-4">
+
+                  {/* Cabecera del modal */}
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                      <span className="text-sm font-semibold text-white/90 tracking-wide uppercase">
+                        Video de presentación
+                      </span>
+                    </div>
+                    <button
+                      onClick={() => setSplashOpen(false)}
+                      className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white/70 hover:text-white transition-all"
+                      aria-label="Cerrar video"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  {/* Contenedor del video con esquinas decorativas */}
+                  <div className="relative rounded-xl overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                    <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-primary rounded-tl-lg z-10 pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-secondary rounded-tr-lg z-10 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-secondary rounded-bl-lg z-10 pointer-events-none" />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary rounded-br-lg z-10 pointer-events-none" />
+                    <video
+                      className="w-full h-full object-contain bg-black rounded-xl"
+                      controls
+                      autoPlay
+                      playsInline
+                      src={`${import.meta.env.BASE_URL}video-presentacion.mp4`}
+                    />
+                  </div>
+
+                  {/* Pie del modal */}
+                  <div className="flex items-center justify-between mt-3 px-1">
+                    <p className="text-xs text-white/50">
+                      Seminario Internacional de Oncopatología Veterinaria 2026
+                    </p>
+                    <button
+                      onClick={() => setSplashOpen(false)}
+                      className="text-xs text-white/40 hover:text-white/70 transition-colors underline underline-offset-2"
+                    >
+                      Cerrar y explorar el sitio
+                    </button>
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
