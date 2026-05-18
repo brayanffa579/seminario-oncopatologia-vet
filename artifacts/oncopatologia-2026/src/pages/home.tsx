@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import bannerMain from "@assets/1_1777148830299.png";
+import heroCells from "@assets/generated_images/hero_cells_clean.png";
 import bannerTematica from "@assets/Temática_DTF_LCPG_Colombia_2026_1777148830300.png";
 import bannerResumenes from "@assets/generated_images/resumenes_bg.png";
 import speakerMeuten from "@assets/4_1777148830299.png";
@@ -82,9 +83,9 @@ export default function Home() {
       {/* Hero Section */}
       <section id="inicio" className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <img src={bannerMain} alt="Nariño Landscape" className="w-full h-full object-cover opacity-15" style={{ objectPosition: 'center bottom' }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background"></div>
-          <div className="absolute inset-0 bg-background/60"></div>
+          <img src={heroCells} alt="Células oncológicas veterinarias" className="w-full h-full object-cover opacity-45" style={{ objectPosition: 'center center' }} />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80"></div>
+          <div className="absolute inset-0 bg-background/30"></div>
         </div>
         
         <div className="container relative z-10 px-4 py-20 mx-auto text-center flex flex-col items-center">
