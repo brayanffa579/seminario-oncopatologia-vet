@@ -218,7 +218,7 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-3 text-white/90 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/10">
               <MapPin className="w-5 h-5 text-accent" />
-              <span>Hotel Morasurco, Pasto</span>
+              <span>Hotel Cuellars, Pasto</span>
             </div>
           </motion.div>
 
@@ -240,7 +240,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-8">Sobre el Evento</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en el Hotel Morasurco de Pasto, Nariño, Colombia.
+            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en el Hotel Cuellars de Pasto, Nariño, Colombia.
           </p>
         </div>
       </section>
@@ -741,18 +741,18 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold mb-6">Sede del Evento</h2>
-              <h3 className="text-2xl text-primary font-semibold mb-4">Hotel Morasurco</h3>
+              <h3 className="text-2xl text-primary font-semibold mb-4">Hotel Cuellars</h3>
               <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
                 Pasto, Colombia, te espera. Una de las ciudades andinas más hermosas del país, a los pies del imponente volcán Galeras, reconocida por su riqueza cultural, gastronómica y calidez humana.
               </p>
               <div className="flex items-center gap-3 text-muted-foreground mb-8 bg-card p-4 rounded-lg border border-border">
                 <MapPin className="w-6 h-6 text-accent flex-shrink-0" />
-                <span>Hotel Morasurco, Cra. 22 #18-19, Pasto, Nariño, Colombia</span>
+                <span>Hotel Cuellars, Pasto, Nariño, Colombia</span>
               </div>
             </div>
             <div className="h-[400px] rounded-xl overflow-hidden border border-border/50 shadow-xl">
               <iframe 
-                src="https://maps.google.com/maps?q=Hotel+Morasurco+Pasto+Colombia&output=embed&z=16" 
+                src="https://maps.google.com/maps?q=Hotel+Cuellars+Pasto+Colombia&output=embed&z=16" 
                 width="100%" 
                 height="100%" 
                 style={{ border: 0 }} 
