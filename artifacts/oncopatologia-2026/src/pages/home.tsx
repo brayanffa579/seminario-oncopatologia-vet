@@ -61,6 +61,25 @@ export default function Home() {
     return () => clearTimeout(timer);
   }, []);
 
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const target = new Date("2026-10-08T08:00:00-05:00").getTime();
+    const tick = () => {
+      const diff = target - Date.now();
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setTimeLeft({
+        days:    Math.floor(diff / 86400000),
+        hours:   Math.floor((diff % 86400000) / 3600000),
+        minutes: Math.floor((diff % 3600000)  / 60000),
+        seconds: Math.floor((diff % 60000)    / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+
   return (
     <div className="min-h-screen w-full bg-background font-sans text-foreground">
 
@@ -219,6 +238,37 @@ export default function Home() {
             <div className="flex items-center space-x-3 text-white/90 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/10">
               <MapPin className="w-5 h-5 text-accent" />
               <span>Hotel Cuellars, Pasto</span>
+            </div>
+          </motion.div>
+
+          {/* Contador regresivo */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="mb-12"
+          >
+            <p className="text-xs uppercase tracking-widest text-white/40 mb-4">Faltan para el evento</p>
+            <div className="flex gap-3 sm:gap-5 justify-center">
+              {[
+                { value: timeLeft.days,    label: "Días" },
+                { value: timeLeft.hours,   label: "Horas" },
+                { value: timeLeft.minutes, label: "Min" },
+                { value: timeLeft.seconds, label: "Seg" },
+              ].map(({ value, label }, i) => (
+                <div key={label} className="flex flex-col items-center">
+                  <div className="relative w-16 sm:w-20 h-16 sm:h-20 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg">
+                    {/* separador ":" entre bloques (excepto el último) */}
+                    {i < 3 && (
+                      <span className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 text-white/30 text-lg font-bold select-none">:</span>
+                    )}
+                    <span className="text-2xl sm:text-3xl font-bold text-white tabular-nums leading-none">
+                      {String(value).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-widest text-white/40">{label}</span>
+                </div>
+              ))}
             </div>
           </motion.div>
 
