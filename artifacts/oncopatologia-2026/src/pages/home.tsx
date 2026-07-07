@@ -356,7 +356,7 @@ export default function Home() {
           </div>
 
           {/* CTA de inscripción */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
+          <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 flex-wrap">
             <a
               href="https://forms.gle/dTzxtuDDPSCvaEeU8"
               target="_blank"
@@ -366,9 +366,22 @@ export default function Home() {
               <UserPlus className="w-5 h-5" />
               Inscríbete aquí como participante
             </a>
-            <p className="text-muted-foreground text-sm max-w-xs text-center sm:text-left leading-snug">
-              Si ya tienes tu recibo de pago, regístrate en el botón.
-            </p>
+            <a
+              href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=249"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 rounded-lg text-lg font-semibold transition-all shadow-lg hover:scale-105 animate-receipt-pop"
+              style={{
+                background: "linear-gradient(135deg, #f59e0b, #d97706)",
+                color: "#fff",
+                boxShadow: "0 8px 24px rgba(245,158,11,0.35)",
+              }}
+            >
+              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Genera aquí tu recibo de pago
+            </a>
           </div>
         </div>
       </section>
