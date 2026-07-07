@@ -163,6 +163,30 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
+      {/* ── Barra de logos institucionales ── */}
+      <div className="w-full bg-white border-b border-gray-200 py-2 overflow-hidden">
+        <div
+          className="flex items-center gap-0"
+          style={{
+            display: "flex",
+            width: "max-content",
+            animation: "marquee 30s linear infinite",
+          }}
+        >
+          {/* Se duplica la imagen para lograr el bucle continuo */}
+          {[0, 1].map((i) => (
+            <img
+              key={i}
+              src={`${import.meta.env.BASE_URL}logos-institucionales.png`}
+              alt="Logos institucionales"
+              className="h-12 w-auto object-contain select-none"
+              style={{ minWidth: "max-content" }}
+              draggable={false}
+            />
+          ))}
+        </div>
+      </div>
+
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
