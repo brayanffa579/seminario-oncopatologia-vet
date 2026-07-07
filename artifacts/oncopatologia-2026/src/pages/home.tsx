@@ -164,28 +164,42 @@ export default function Home() {
         )}
       </AnimatePresence>
       {/* ── Barra de logos institucionales ── */}
-      <div className="w-full bg-white border-b border-gray-200 py-2 overflow-hidden">
-        <div
-          className="flex items-center gap-0"
-          style={{
-            display: "flex",
-            width: "max-content",
-            animation: "marquee 30s linear infinite",
-          }}
-        >
-          {/* Se duplica la imagen para lograr el bucle continuo */}
-          {[0, 1].map((i) => (
-            <img
-              key={i}
-              src={`${import.meta.env.BASE_URL}logos-institucionales.png`}
-              alt="Logos institucionales"
-              className="h-12 w-auto object-contain select-none"
-              style={{ minWidth: "max-content" }}
-              draggable={false}
-            />
-          ))}
-        </div>
-      </div>
+      {(() => {
+        const logoCount = 24;
+        const logos = Array.from({ length: logoCount }, (_, i) =>
+          `${import.meta.env.BASE_URL}logos/logo_${String(i + 1).padStart(2, "0")}.png`
+        );
+        const track = [...logos, ...logos]; // duplicate for seamless loop
+        return (
+          <div className="w-full bg-white border-b border-gray-200 py-3 overflow-hidden">
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "48px",
+                width: "max-content",
+                animation: "marquee 40s linear infinite",
+              }}
+            >
+              {track.map((src, idx) => (
+                <img
+                  key={idx}
+                  src={src}
+                  alt={`Logo institucional ${(idx % logoCount) + 1}`}
+                  style={{
+                    height: "48px",
+                    width: "auto",
+                    objectFit: "contain",
+                    flexShrink: 0,
+                    userSelect: "none",
+                  }}
+                  draggable={false}
+                />
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
