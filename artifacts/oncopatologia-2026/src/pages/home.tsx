@@ -163,44 +163,6 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* ── Barra de logos institucionales ── */}
-      {(() => {
-        const logoCount = 24;
-        const logos = Array.from({ length: logoCount }, (_, i) =>
-          `${import.meta.env.BASE_URL}logos/logo_${String(i + 1).padStart(2, "0")}.png`
-        );
-        const track = [...logos, ...logos]; // duplicate for seamless loop
-        return (
-          <div className="w-full bg-white border-b border-gray-200 py-3 overflow-hidden">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "48px",
-                width: "max-content",
-                animation: "marquee 40s linear infinite",
-              }}
-            >
-              {track.map((src, idx) => (
-                <img
-                  key={idx}
-                  src={src}
-                  alt={`Logo institucional ${(idx % logoCount) + 1}`}
-                  style={{
-                    height: "48px",
-                    width: "auto",
-                    objectFit: "contain",
-                    flexShrink: 0,
-                    userSelect: "none",
-                  }}
-                  draggable={false}
-                />
-              ))}
-            </div>
-          </div>
-        );
-      })()}
-
       {/* Navigation */}
       <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -307,6 +269,23 @@ export default function Home() {
                   <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-widest text-white/40">{label}</span>
                 </div>
               ))}
+            </div>
+          </motion.div>
+
+          {/* Banner de logos institucionales */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="mb-10 w-full max-w-4xl mx-auto"
+          >
+            <div className="bg-white/95 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg overflow-hidden">
+              <img
+                src={`${import.meta.env.BASE_URL}logos-institucionales.png`}
+                alt="Instituciones aliadas"
+                draggable={false}
+                className="w-full h-12 object-contain select-none transition-transform duration-300 ease-out hover:scale-105 cursor-default"
+              />
             </div>
           </motion.div>
 
