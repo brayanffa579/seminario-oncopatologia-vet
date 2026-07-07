@@ -176,6 +176,7 @@ export default function Home() {
             <a href="#precios" className="hover:text-primary transition-colors">Precios</a>
             <a href="#resumenes" className="hover:text-primary transition-colors">Resúmenes</a>
             <a href="#lugar" className="hover:text-primary transition-colors">Lugar</a>
+            <a href="#hoteles" className="hover:text-primary transition-colors">Hoteles</a>
           </div>
           <a
             href="https://forms.gle/dTzxtuDDPSCvaEeU8"
@@ -828,6 +829,140 @@ export default function Home() {
                 referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Hoteles cercanos ── */}
+      <section id="hoteles" className="py-24 bg-background">
+        <div className="container mx-auto px-4 max-w-6xl">
+          <div className="text-center mb-14">
+            <span className="inline-block text-xs uppercase tracking-widest text-primary font-semibold mb-3 px-4 py-1 rounded-full bg-primary/10 border border-primary/20">Alojamiento</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Hoteles Cercanos al Evento</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+              Para asistentes que viajan desde otras ciudades. Todos los hoteles están ubicados en el centro de Pasto, a pocos minutos del Hotel Cuellars. Los precios son estimados por noche en pesos colombianos (Oct 2026).
+            </p>
+          </div>
+
+          {/* Tarjetas de hoteles */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+            {[
+              {
+                name: "Hotel Posada León",
+                stars: 5,
+                priceMin: 250000,
+                priceMax: 490000,
+                highlight: "El más popular de Pasto · Calificación 9.3/10",
+                distance: "~5 min en carro",
+                amenities: ["Wi-Fi", "Restaurante", "Parqueadero"],
+                badge: "Muy valorado",
+              },
+              {
+                name: "El Loft Hotel",
+                stars: 4,
+                priceMin: 160000,
+                priceMax: 290000,
+                highlight: "A 2 cuadras de la Plaza de Nariño",
+                distance: "~3 min en carro",
+                amenities: ["Wi-Fi", "Desayuno", "Parqueadero"],
+                badge: "Céntrico",
+              },
+              {
+                name: "Hotel Plaza Carnaval",
+                stars: 4,
+                priceMin: 200000,
+                priceMax: 370000,
+                highlight: "Diseño moderno · Piscina · Terraza",
+                distance: "~5 min en carro",
+                amenities: ["Piscina", "Wi-Fi", "Room service"],
+                badge: null,
+              },
+              {
+                name: "Hotel Siete Balcones",
+                stars: 4,
+                priceMin: 160000,
+                priceMax: 310000,
+                highlight: "Cra 26 Nro. 15-70 · Personal muy atento",
+                distance: "~4 min en carro",
+                amenities: ["Wi-Fi", "Parqueadero", "Desayuno"],
+                badge: null,
+              },
+              {
+                name: "Hotel Max",
+                stars: 3,
+                priceMin: 100000,
+                priceMax: 200000,
+                highlight: "Pleno centro · Zona comercial y gastronómica",
+                distance: "~2 min en carro",
+                amenities: ["Wi-Fi", "Parqueadero", "Recepción 24h"],
+                badge: "Económico",
+              },
+              {
+                name: "Hotel Versalles",
+                stars: 3,
+                priceMin: 80000,
+                priceMax: 185000,
+                highlight: "Gimnasio · Restaurante · Acepta mascotas",
+                distance: "~6 min en carro",
+                amenities: ["Gimnasio", "Wi-Fi", "Restaurante"],
+                badge: null,
+              },
+            ].map((hotel) => (
+              <div
+                key={hotel.name}
+                className="relative bg-card rounded-2xl border border-border/60 p-6 flex flex-col gap-3 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 group"
+              >
+                {hotel.badge && (
+                  <span className="absolute top-4 right-4 text-[10px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full bg-primary/15 text-primary border border-primary/20">
+                    {hotel.badge}
+                  </span>
+                )}
+
+                {/* Estrellas */}
+                <div className="flex gap-0.5">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <svg key={i} className={`w-4 h-4 ${i < hotel.stars ? "text-yellow-400" : "text-border"}`} fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                  ))}
+                </div>
+
+                <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">{hotel.name}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{hotel.highlight}</p>
+
+                {/* Precio */}
+                <div className="flex items-baseline gap-1 mt-1">
+                  <span className="text-2xl font-bold text-primary">
+                    ${hotel.priceMin.toLocaleString("es-CO")}
+                  </span>
+                  <span className="text-muted-foreground text-sm">– ${hotel.priceMax.toLocaleString("es-CO")} COP/noche</span>
+                </div>
+
+                {/* Distancia y amenidades */}
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <MapPin className="w-3 h-3 text-accent flex-shrink-0" />
+                  <span>{hotel.distance} del evento</span>
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mt-1">
+                  {hotel.amenities.map((a) => (
+                    <span key={a} className="text-[11px] px-2 py-0.5 rounded-full bg-muted text-muted-foreground border border-border/60">
+                      {a}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Nota informativa */}
+          <div className="bg-card/60 border border-border/50 rounded-xl p-5 flex flex-col sm:flex-row gap-3 items-start sm:items-center">
+            <div className="w-8 h-8 rounded-full bg-accent/15 flex items-center justify-center flex-shrink-0">
+              <MapPin className="w-4 h-4 text-accent" />
+            </div>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Los precios son estimados para octubre de 2026 y pueden variar según disponibilidad. Se recomienda reservar con al menos <strong className="text-foreground">4 semanas de anticipación</strong>. Los miércoles suelen ofrecer las mejores tarifas. Plataformas sugeridas: <strong className="text-foreground">Booking.com · Expedia · Hotels.com</strong>.
+            </p>
           </div>
         </div>
       </section>
