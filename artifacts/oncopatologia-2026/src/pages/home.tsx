@@ -231,20 +231,20 @@ export default function Home() {
             <span>Oncopatología Veterinaria</span>
           </motion.div>
 
-          {/* Title */}
+          {/* Title — single unified style */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.15 }}
-            className="font-black uppercase leading-none max-w-5xl tracking-tight"
+            className="font-black uppercase leading-tight max-w-5xl tracking-tight text-center"
             style={{ fontSize: 'clamp(2rem,5.5vw,4.25rem)' }}
           >
-            <span className="block text-white mb-1" style={{ textShadow: '0 0 40px rgba(255,255,255,0.25)' }}>
-              Seminario Internacional de
-            </span>
-            <span className="block mb-1" style={{ background: 'linear-gradient(90deg,#00d4ff,#a855f7,#ff0080)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 18px rgba(0,212,255,0.35))' }}>
-              Oncopatología
-            </span>
-            <span className="block" style={{ color: '#ff0080', textShadow: '0 0 22px rgba(255,0,128,0.7), 0 0 45px rgba(255,0,128,0.3)' }}>
-              Veterinaria 2026
+            <span style={{
+              background: 'linear-gradient(135deg, #00d4ff 0%, #00d4ff 40%, #a78bfa 70%, #ff0080 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 0 20px rgba(0,212,255,0.4))',
+            }}>
+              Seminario Internacional de Oncopatología Veterinaria 2026
             </span>
           </motion.h1>
 
@@ -1146,8 +1146,7 @@ function LogoCarousel() {
 
   return (
     <div
-      className="rounded-xl px-4 py-4 overflow-hidden select-none"
-      style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(14px)', border: '1px solid rgba(0,212,255,0.15)' }}
+      className="rounded-xl px-4 py-5 overflow-hidden select-none bg-white shadow-lg"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => { setPaused(false); setHoveredIdx(null); }}
     >
@@ -1176,9 +1175,9 @@ function LogoCarousel() {
                 draggable={false}
                 className="h-12 w-auto object-contain transition-all duration-300"
                 style={{
-                  filter: isHovered ? "brightness(1.2) drop-shadow(0 0 8px rgba(0,212,255,0.6))" : "brightness(0.85) grayscale(15%)",
+                  filter: isHovered ? "drop-shadow(0 0 6px rgba(0,212,255,0.5))" : "none",
                   transform: isHovered ? "scale(1.3)" : "scale(1)",
-                  opacity: isHovered ? 1 : 0.88,
+                  opacity: 1,
                 }}
               />
               {isHovered && (
