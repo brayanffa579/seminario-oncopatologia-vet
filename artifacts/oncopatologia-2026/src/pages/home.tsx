@@ -1033,6 +1033,12 @@ export default function Home() {
               <span className="px-4 py-2 bg-background rounded-full border border-border">ASFAMEDEZ</span>
               <span className="px-4 py-2 bg-background rounded-full border border-border">SUPERCAN</span>
               <span className="px-4 py-2 bg-background rounded-full border border-border">ACPAVET</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">CORHUILA</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">UNAD</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">IU Visión de las Américas</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">PAW Patología Veterinaria</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">VitaLab</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">ZooPath</span>
             </div>
           </div>
           
@@ -1064,6 +1070,13 @@ const CAROUSEL_LOGOS = [
   { src: "logos/fundacion-san-martin.jpg",name: "Fundación Universitaria San Martín" },
   { src: "logos/juan-castellanos.png",    name: "Universidad Juan de Castellanos" },
   { src: "logos/unilasallista.png",       name: "Unilasallista" },
+  { src: "logos/corhuila.png",            name: "CORHUILA — Corporación Universitaria del Huila" },
+  { src: "logos/unad.png",                name: "UNAD — Universidad Nacional Abierta y a Distancia" },
+  { src: "logos/vision-americas.png",     name: "IU Visión de las Américas" },
+  { src: "logos/paw.png",                 name: "PAW Patología Veterinaria" },
+  { src: "logos/vitalab.png",             name: "VitaLab" },
+  { src: "logos/zoopath.png",             name: "ZooPath" },
+  { src: "logos/acpavet.png",             name: "ACPAVET" },
   { src: "logos/facipec.jpg",             name: "FACIPEC" },
   { src: "logos/corpavet.jpg",            name: "CORPAVET" },
   { src: "logos/asfamedez.jpg",           name: "ASFAMEDEZ" },
@@ -1109,7 +1122,7 @@ function LogoCarousel() {
                 className="h-12 w-auto object-contain transition-all duration-300"
                 style={{
                   filter: isHovered ? "none" : "grayscale(15%)",
-                  transform: isHovered ? "scale(1.15)" : "scale(1)",
+                  transform: isHovered ? "scale(1.3)" : "scale(1)",
                   opacity: isHovered ? 1 : 0.85,
                 }}
               />
