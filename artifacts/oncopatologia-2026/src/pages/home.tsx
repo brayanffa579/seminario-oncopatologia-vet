@@ -273,21 +273,14 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Banner de logos institucionales */}
+          {/* Banner de logos institucionales — carrusel */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.1 }}
             className="mb-10 w-full max-w-4xl mx-auto"
           >
-            <div className="bg-white/95 backdrop-blur-sm rounded-xl px-6 py-3 shadow-lg overflow-hidden">
-              <img
-                src={`${import.meta.env.BASE_URL}logos-institucionales.png`}
-                alt="Instituciones aliadas"
-                draggable={false}
-                className="w-full h-12 object-contain select-none transition-transform duration-300 ease-out hover:scale-105 cursor-default"
-              />
-            </div>
+            <LogoCarousel />
           </motion.div>
 
           <motion.div
@@ -1028,12 +1021,18 @@ export default function Home() {
               <span className="px-4 py-2 bg-background rounded-full border border-border">Davis-Thompson Foundation (DTF)</span>
               <span className="px-4 py-2 bg-background rounded-full border border-border">Latin Comparative Pathology Group (LCPG)</span>
               <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad de Nariño</span>
-              <span className="px-4 py-2 bg-background rounded-full border border-border">FACIPEC</span>
-              <span className="px-4 py-2 bg-background rounded-full border border-border">ACPAVET</span>
-              <span className="px-4 py-2 bg-background rounded-full border border-border">CORPAVET</span>
-              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad de Antioquia</span>
-              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad Juan de Castellanos</span>
               <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad Nacional de Colombia</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad de Antioquia</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad del Tolima</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad de Caldas</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Fundación Universitaria San Martín</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Universidad Juan de Castellanos</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">Unilasallista</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">FACIPEC</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">CORPAVET</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">ASFAMEDEZ</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">SUPERCAN</span>
+              <span className="px-4 py-2 bg-background rounded-full border border-border">ACPAVET</span>
             </div>
           </div>
           
@@ -1050,6 +1049,79 @@ export default function Home() {
         </div>
       </footer>
 
+    </div>
+  );
+}
+
+const CAROUSEL_LOGOS = [
+  { src: "logos/davis-thompson.jpg",      name: "Davis-Thompson Foundation (DTF)" },
+  { src: "logos/lcpg.png",                name: "Latin Comparative Pathology Group (LCPG)" },
+  { src: "logos/udenar.png",              name: "Universidad de Nariño" },
+  { src: "logos/universidad-nacional.png",name: "Universidad Nacional de Colombia" },
+  { src: "logos/universidad-antioquia.png",name: "Universidad de Antioquia" },
+  { src: "logos/universidad-tolima.png",  name: "Universidad del Tolima" },
+  { src: "logos/universidad-caldas.png",  name: "Universidad de Caldas" },
+  { src: "logos/fundacion-san-martin.jpg",name: "Fundación Universitaria San Martín" },
+  { src: "logos/juan-castellanos.png",    name: "Universidad Juan de Castellanos" },
+  { src: "logos/unilasallista.png",       name: "Unilasallista" },
+  { src: "logos/facipec.jpg",             name: "FACIPEC" },
+  { src: "logos/corpavet.jpg",            name: "CORPAVET" },
+  { src: "logos/asfamedez.jpg",           name: "ASFAMEDEZ" },
+  { src: "logos/supercan.jpg",            name: "SUPERCAN" },
+];
+
+function LogoCarousel() {
+  const [paused, setPaused] = useState(false);
+  const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const base = import.meta.env.BASE_URL;
+  // Duplicate for seamless loop
+  const items = [...CAROUSEL_LOGOS, ...CAROUSEL_LOGOS];
+
+  return (
+    <div
+      className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-4 shadow-lg overflow-hidden select-none"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => { setPaused(false); setHoveredIdx(null); }}
+    >
+      <div
+        className="flex gap-6 items-center"
+        style={{
+          animation: `logo-scroll 32s linear infinite`,
+          animationPlayState: paused ? "paused" : "running",
+          width: "max-content",
+        }}
+      >
+        {items.map((logo, i) => {
+          const idx = i % CAROUSEL_LOGOS.length;
+          const isHovered = hoveredIdx === i;
+          return (
+            <div
+              key={i}
+              className="relative flex flex-col items-center cursor-default flex-shrink-0"
+              style={{ width: 120 }}
+              onMouseEnter={() => setHoveredIdx(i)}
+              onMouseLeave={() => setHoveredIdx(null)}
+            >
+              <img
+                src={`${base}${logo.src}`}
+                alt={logo.name}
+                draggable={false}
+                className="h-12 w-auto object-contain transition-all duration-300"
+                style={{
+                  filter: isHovered ? "none" : "grayscale(15%)",
+                  transform: isHovered ? "scale(1.15)" : "scale(1)",
+                  opacity: isHovered ? 1 : 0.85,
+                }}
+              />
+              {isHovered && (
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-[10px] leading-tight rounded-md px-2 py-1 whitespace-nowrap z-10 shadow-lg pointer-events-none max-w-[180px] text-center">
+                  {logo.name}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
