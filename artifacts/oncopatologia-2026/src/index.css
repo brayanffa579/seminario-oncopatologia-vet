@@ -95,49 +95,80 @@
   --elevate-1: rgba(255,255,255, .04);
   --elevate-2: rgba(255,255,255, .09);
 
-  /* Deep moody twilight palette */
-  --background: 222 47% 11%; /* #0f172a */
-  --foreground: 210 40% 98%; /* #f8fafc */
+  /* Cosmos Oscuro — deep navy + cyan + magenta */
+  --background: 220 80% 6%;      /* #040d1a deep navy */
+  --foreground: 210 40% 98%;     /* #f8fafc white */
 
-  --card: 215 28% 17%; /* #1e293b */
+  --card: 220 60% 9%;            /* #0a1628 slightly lighter navy */
   --card-foreground: 210 40% 98%;
-  --card-border: 215 28% 25%;
+  --card-border: 218 45% 18%;
 
-  --popover: 222 47% 11%;
+  --popover: 220 80% 6%;
   --popover-foreground: 210 40% 98%;
-  --popover-border: 215 28% 25%;
+  --popover-border: 218 45% 18%;
 
-  --primary: 171 82% 40%; /* #14b8a6 Teal */
-  --primary-foreground: 210 40% 98%;
+  --primary: 188 100% 50%;       /* #00d4ff electric cyan */
+  --primary-foreground: 220 80% 6%;
 
-  --secondary: 326 70% 48%; /* #c026d3 Magenta/Violet */
+  --secondary: 330 100% 50%;     /* #ff0080 hot magenta */
   --secondary-foreground: 210 40% 98%;
 
-  --muted: 215 28% 25%;
-  --muted-foreground: 215 20% 65%;
+  --muted: 218 45% 15%;
+  --muted-foreground: 204 40% 72%; /* #a5c8e1 */
 
-  --accent: 38 92% 50%; /* #f59e0b Golden Amber */
-  --accent-foreground: 222 47% 11%;
+  --accent: 38 92% 50%;          /* #f59e0b Golden Amber */
+  --accent-foreground: 220 80% 6%;
 
   --destructive: 0 84% 60%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 215 28% 25%;
-  --input: 215 28% 25%;
-  --ring: 171 82% 40%;
+  --border: 218 45% 18%;
+  --input: 218 45% 18%;
+  --ring: 188 100% 50%;
 
   --radius: 0.75rem;
 
-  --chart-1: 171 82% 40%;
-  --chart-2: 326 70% 48%;
+  --chart-1: 188 100% 50%;
+  --chart-2: 330 100% 50%;
   --chart-3: 38 92% 50%;
-  --chart-4: 215 28% 65%;
+  --chart-4: 270 70% 60%;
   --chart-5: 210 40% 98%;
 
   --app-font-sans: 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
 }
+
+/* Cosmos Oscuro glow utilities */
+@keyframes orb-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-28px) scale(1.07); }
+}
+@keyframes particle-drift {
+  0%, 100% { transform: translateY(0) translateX(0) scale(1); }
+  25%  { transform: translateY(-18px) translateX(8px) scale(1.1); }
+  50%  { transform: translateY(-8px) translateX(-12px) scale(0.9); }
+  75%  { transform: translateY(12px) translateX(4px) scale(1.05); }
+}
+.cosmos-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-drift 14s ease-in-out infinite;
+}
+.cosmos-particle:nth-child(1) { width:8px;  height:8px;  background:#00d4ff; box-shadow:0 0 14px 5px rgba(0,212,255,.65); top:18%; left:12%;  animation-delay:0s;   }
+.cosmos-particle:nth-child(2) { width:12px; height:12px; background:#ff0080; box-shadow:0 0 18px 7px rgba(255,0,128,.65); top:58%; right:18%; animation-delay:-3s;  }
+.cosmos-particle:nth-child(3) { width:6px;  height:6px;  background:#7c3aed; box-shadow:0 0 12px 4px rgba(124,58,237,.65); bottom:28%; left:28%; animation-delay:-7s;  }
+.cosmos-particle:nth-child(4) { width:10px; height:10px; background:#00d4ff; box-shadow:0 0 14px 5px rgba(0,212,255,.5);  top:28%; right:10%; animation-delay:-11s; }
+.cosmos-particle:nth-child(5) { width:7px;  height:7px;  background:#ff0080; box-shadow:0 0 14px 5px rgba(255,0,128,.6); top:68%; left:8%;   animation-delay:-5s;  }
+.cosmos-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cosmos-orb-cyan  { background: radial-gradient(circle, rgba(0,212,255,.18) 0%, transparent 70%); animation: orb-float 8s ease-in-out infinite; }
+.cosmos-orb-pink  { background: radial-gradient(circle, rgba(255,0,128,.14) 0%, transparent 70%); animation: orb-float 10s ease-in-out infinite reverse; }
+.cosmos-orb-violet{ background: radial-gradient(circle, rgba(124,58,237,.18) 0%, transparent 70%); animation: orb-float 6s ease-in-out infinite 2s; }
 
 @layer base {
   * {

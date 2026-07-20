@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 import bannerMain from "@assets/1_1777148830299.png";
-import heroCells from "@assets/generated_images/hero_cells_clean.png";
+import heroCells from "@assets/hero-cosmos.png";
 import bannerTematica from "@assets/Temática_DTF_LCPG_Colombia_2026_1777148830300.png";
 import bannerResumenes from "@assets/generated_images/resumenes_bg.png";
 import speakerMeuten from "@assets/4_1777148830299.png";
@@ -55,10 +55,17 @@ const speakers = [
 
 export default function Home() {
   const [splashOpen, setSplashOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setSplashOpen(true), 600);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
@@ -163,93 +170,114 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border">
+      {/* Navigation — Cosmos glass nav */}
+      <nav className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled ? 'bg-[#040d1a]/90 backdrop-blur-md border-b border-[#00d4ff]/20 shadow-[0_2px_24px_rgba(0,212,255,0.1)]' : 'bg-transparent border-b border-transparent'}`}>
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="font-bold text-xl text-primary tracking-tight">DTF/LCPG 2026</div>
-          <div className="hidden md:flex space-x-6 text-sm font-medium">
-            <a href="#inicio" className="hover:text-primary transition-colors">Inicio</a>
-            <a href="#sobre" className="hover:text-primary transition-colors">Sobre el Evento</a>
-            <a href="#video" className="hover:text-primary transition-colors">Video</a>
-            <a href="#tematica" className="hover:text-primary transition-colors">Temática</a>
-            <a href="#ponentes" className="hover:text-primary transition-colors">Ponentes</a>
-            <a href="#precios" className="hover:text-primary transition-colors">Precios</a>
+          <div className="font-black text-xl tracking-widest uppercase" style={{ color: '#00d4ff', textShadow: '0 0 10px rgba(0,212,255,0.6)' }}>DTF/LCPG 2026</div>
+          <div className="hidden md:flex space-x-5 text-sm font-medium text-[#a5c8e1]">
+            <a href="#inicio"    className="hover:text-primary transition-colors">Inicio</a>
+            <a href="#sobre"     className="hover:text-primary transition-colors">Sobre el Evento</a>
+            <a href="#video"     className="hover:text-primary transition-colors">Video</a>
+            <a href="#tematica"  className="hover:text-primary transition-colors">Temática</a>
+            <a href="#ponentes"  className="hover:text-primary transition-colors">Ponentes</a>
+            <a href="#precios"   className="hover:text-primary transition-colors">Precios</a>
             <a href="#resumenes" className="hover:text-primary transition-colors">Resúmenes</a>
-            <a href="#lugar" className="hover:text-primary transition-colors">Lugar</a>
-            <a href="#hoteles" className="hover:text-primary transition-colors">Hoteles</a>
+            <a href="#lugar"     className="hover:text-primary transition-colors">Lugar</a>
+            <a href="#hoteles"   className="hover:text-primary transition-colors">Hoteles</a>
           </div>
           <a
             href="https://forms.gle/dTzxtuDDPSCvaEeU8"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground hover:bg-primary/90 px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold border border-primary text-primary bg-primary/10 hover:bg-primary/20 transition-all"
+            style={{ boxShadow: '0 0 12px rgba(0,212,255,0.2)' }}
           >
-            Reserva tu cupo
+            Reserva tu cupo →
           </a>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="inicio" className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section — Cosmos Oscuro */}
+      <section id="inicio" className="relative w-full min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background image — highly visible */}
         <div className="absolute inset-0 z-0">
-          <img src={heroCells} alt="Células oncológicas veterinarias" className="w-full h-full object-cover opacity-45" style={{ objectPosition: 'center center' }} />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background/80"></div>
-          <div className="absolute inset-0 bg-background/30"></div>
+          <img src={heroCells} alt="Células oncológicas veterinarias" className="w-full h-full object-cover" style={{ opacity: 0.82, objectPosition: 'center center' }} />
+          {/* Subtle edge overlay — centre stays open */}
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(4,13,26,0.6) 0%, rgba(4,13,26,0.1) 35%, rgba(4,13,26,0.1) 65%, rgba(4,13,26,0.95) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(4,13,26,0.55) 0%, transparent 25%, transparent 75%, rgba(4,13,26,0.55) 100%)' }} />
         </div>
-        
-        <div className="container relative z-10 px-4 py-20 mx-auto text-center flex flex-col items-center">
+
+        {/* Floating orbs */}
+        <div className="cosmos-orb cosmos-orb-cyan  absolute w-56 h-56 top-1/4 left-10 pointer-events-none" />
+        <div className="cosmos-orb cosmos-orb-pink  absolute w-72 h-72 top-1/3 right-12 pointer-events-none" />
+        <div className="cosmos-orb cosmos-orb-violet absolute w-36 h-36 bottom-1/4 left-1/3 pointer-events-none" />
+
+        {/* Particles */}
+        <div className="cosmos-particle" />
+        <div className="cosmos-particle" />
+        <div className="cosmos-particle" />
+        <div className="cosmos-particle" />
+        <div className="cosmos-particle" />
+
+        <div className="container relative z-10 px-4 py-24 mx-auto text-center flex flex-col items-center">
+
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="inline-flex items-center space-x-2 bg-secondary/20 text-secondary border border-secondary/30 px-4 py-1.5 rounded-full text-sm font-medium mb-6"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
+            className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full text-sm font-medium mb-8 border"
+            style={{ background: 'rgba(0,212,255,0.08)', borderColor: 'rgba(0,212,255,0.35)', color: '#00d4ff', boxShadow: '0 0 14px rgba(0,212,255,0.2)' }}
           >
             <Microscope className="w-4 h-4" />
             <span>Oncopatología Veterinaria</span>
           </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold max-w-5xl tracking-tight text-white mb-6 leading-tight"
+
+          {/* Title */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.15 }}
+            className="font-black uppercase leading-none max-w-5xl tracking-tight"
+            style={{ fontSize: 'clamp(2rem,5.5vw,4.25rem)' }}
           >
-            Seminario Internacional de <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Oncopatología Veterinaria 2026</span>
+            <span className="block text-white mb-1" style={{ textShadow: '0 0 40px rgba(255,255,255,0.25)' }}>
+              Seminario Internacional de
+            </span>
+            <span className="block mb-1" style={{ background: 'linear-gradient(90deg,#00d4ff,#a855f7,#ff0080)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 18px rgba(0,212,255,0.35))' }}>
+              Oncopatología
+            </span>
+            <span className="block" style={{ color: '#ff0080', textShadow: '0 0 22px rgba(255,0,128,0.7), 0 0 45px rgba(255,0,128,0.3)' }}>
+              Veterinaria 2026
+            </span>
           </motion.h1>
 
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10"
+          <motion.p
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg md:text-xl mt-5 mb-10"
+            style={{ color: '#a5c8e1' }}
           >
-            ¡Reserva la fecha! Te esperamos.
+            ¡Reserva la fecha!{' '}
+            <span style={{ color: '#00d4ff', textShadow: '0 0 10px rgba(0,212,255,0.7)' }}>Te esperamos.</span>
           </motion.p>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-6 mb-12"
+          {/* Date & location pills */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.55 }}
+            className="flex flex-col sm:flex-row gap-4 mb-10"
           >
-            <div className="flex items-center space-x-3 text-white/90 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/10">
-              <Calendar className="w-5 h-5 text-accent" />
-              <span>8 al 10 de Octubre, 2026</span>
+            <div className="flex items-center space-x-3 px-6 py-3 rounded-full" style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(14px)', border: '1px solid rgba(0,212,255,0.3)', boxShadow: '0 0 12px rgba(0,212,255,0.12)' }}>
+              <Calendar className="w-5 h-5 text-primary" />
+              <span className="text-white font-semibold">8 al 10 de Octubre, 2026</span>
             </div>
-            <div className="flex items-center space-x-3 text-white/90 bg-white/5 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/10">
-              <MapPin className="w-5 h-5 text-accent" />
-              <span>Hotel Cuellars, Pasto</span>
+            <div className="flex items-center space-x-3 px-6 py-3 rounded-full" style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(14px)', border: '1px solid rgba(255,0,128,0.32)', boxShadow: '0 0 12px rgba(255,0,128,0.12)' }}>
+              <MapPin className="w-5 h-5 text-secondary" />
+              <span className="text-white font-semibold">Hotel Cuellars, Pasto</span>
             </div>
           </motion.div>
 
-          {/* Contador regresivo */}
+          {/* Countdown */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-            className="mb-12"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.7 }}
+            className="mb-10"
           >
-            <p className="text-xs uppercase tracking-widest text-white/40 mb-4">Faltan para el evento</p>
+            <p className="text-xs uppercase tracking-[0.25em] mb-5" style={{ color: 'rgba(165,200,225,0.55)' }}>Faltan para el evento</p>
             <div className="flex gap-3 sm:gap-5 justify-center">
               {[
                 { value: timeLeft.days,    label: "Días" },
@@ -258,37 +286,59 @@ export default function Home() {
                 { value: timeLeft.seconds, label: "Seg" },
               ].map(({ value, label }, i) => (
                 <div key={label} className="flex flex-col items-center">
-                  <div className="relative w-16 sm:w-20 h-16 sm:h-20 flex items-center justify-center rounded-xl bg-white/5 border border-white/10 backdrop-blur-sm shadow-lg">
-                    {/* separador ":" entre bloques (excepto el último) */}
+                  <div className="relative w-16 sm:w-20 h-16 sm:h-20 flex items-center justify-center rounded-xl" style={{ background: 'rgba(0,0,0,0.45)', backdropFilter: 'blur(12px)', border: '1px solid rgba(0,212,255,0.25)', boxShadow: '0 0 18px rgba(0,212,255,0.1), inset 0 1px 0 rgba(255,255,255,0.04)' }}>
                     {i < 3 && (
-                      <span className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 text-white/30 text-lg font-bold select-none">:</span>
+                      <span className="absolute -right-2 sm:-right-3 top-1/2 -translate-y-1/2 text-lg font-bold select-none" style={{ color: 'rgba(0,212,255,0.45)' }}>:</span>
                     )}
-                    <span className="text-2xl sm:text-3xl font-bold text-white tabular-nums leading-none">
+                    <span className="text-2xl sm:text-3xl font-black tabular-nums leading-none" style={{ color: '#00d4ff', textShadow: '0 0 14px rgba(0,212,255,0.8)' }}>
                       {String(value).padStart(2, "0")}
                     </span>
                   </div>
-                  <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-widest text-white/40">{label}</span>
+                  <span className="mt-2 text-[10px] sm:text-xs uppercase tracking-widest" style={{ color: 'rgba(165,200,225,0.55)' }}>{label}</span>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Banner de logos institucionales — carrusel */}
+          {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.1 }}
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.85 }}
+            className="flex flex-col sm:flex-row gap-4 mb-10"
+          >
+            <a
+              href="https://forms.gle/dTzxtuDDPSCvaEeU8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-bold transition-all"
+              style={{ background: '#00d4ff', color: '#040d1a', boxShadow: '0 0 24px rgba(0,212,255,0.5)' }}
+            >
+              <UserPlus className="w-5 h-5" />
+              Inscríbete aquí como participante
+            </a>
+            <a
+              href="https://ci.udenar.edu.co:8082/recibos/Tesoreria/ImpresionInternetEve.aspx?id=249"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-bold animate-receipt-pop"
+              style={{ background: 'rgba(245,158,11,0.12)', color: '#f59e0b', border: '2px solid #f59e0b', boxShadow: '0 0 18px rgba(245,158,11,0.3)' }}
+            >
+              <FileText className="w-5 h-5" />
+              Genera aquí tu recibo de pago
+            </a>
+          </motion.div>
+
+          {/* Logo carousel */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 1.1 }}
             className="mb-10 w-full max-w-4xl mx-auto"
           >
             <LogoCarousel />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.25 }}
           >
-            <a href="#sobre" className="flex flex-col items-center text-muted-foreground hover:text-white transition-colors">
+            <a href="#sobre" className="flex flex-col items-center transition-colors" style={{ color: 'rgba(165,200,225,0.55)' }}>
               <span className="text-sm mb-2">Descubre más</span>
               <ChevronDown className="w-5 h-5 animate-bounce" />
             </a>
@@ -299,9 +349,13 @@ export default function Home() {
       {/* About Section */}
       <section id="sobre" className="py-24 bg-card/30">
         <div className="container mx-auto px-4 max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Sobre el Evento</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            <span className="text-white">Sobre el </span>
+            <span className="text-primary">Evento</span>
+          </h2>
+          <div className="w-20 h-1 mx-auto rounded-full mb-8" style={{ background: 'linear-gradient(90deg,#00d4ff,#ff0080)' }} />
           <p className="text-lg text-muted-foreground leading-relaxed">
-            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del 8 al 10 de Octubre, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en el Hotel Cuellars de Pasto, Nariño, Colombia.
+            La Davis Thompson Foundation (DTF) y el Latin Comparative Pathology Group (LCPG) apoyan año a año el entrenamiento de clínicos y patólogos veterinarios en Latinoamérica con expertos en áreas de interés. Para el año 2026 se desarrollará del <strong className="text-white">8 al 10 de Octubre</strong>, el Seminario-Taller en Oncopatología Veterinaria DTF/LCPG Colombia 2026 en el Hotel Cuellars de Pasto, Nariño, Colombia.
           </p>
         </div>
       </section>
@@ -1092,7 +1146,8 @@ function LogoCarousel() {
 
   return (
     <div
-      className="bg-white/95 backdrop-blur-sm rounded-xl px-4 py-4 shadow-lg overflow-hidden select-none"
+      className="rounded-xl px-4 py-4 overflow-hidden select-none"
+      style={{ background: 'rgba(255,255,255,0.07)', backdropFilter: 'blur(14px)', border: '1px solid rgba(0,212,255,0.15)' }}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => { setPaused(false); setHoveredIdx(null); }}
     >
@@ -1121,9 +1176,9 @@ function LogoCarousel() {
                 draggable={false}
                 className="h-12 w-auto object-contain transition-all duration-300"
                 style={{
-                  filter: isHovered ? "none" : "grayscale(15%)",
+                  filter: isHovered ? "brightness(1.2) drop-shadow(0 0 8px rgba(0,212,255,0.6))" : "brightness(0.85) grayscale(15%)",
                   transform: isHovered ? "scale(1.3)" : "scale(1)",
-                  opacity: isHovered ? 1 : 0.85,
+                  opacity: isHovered ? 1 : 0.88,
                 }}
               />
               {isHovered && (
