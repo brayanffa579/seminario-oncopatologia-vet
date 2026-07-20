@@ -126,3 +126,36 @@ body {
   background-color: var(--cosmos-bg);
   color: #fff;
 }
+
+@keyframes logo-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-30px) scale(1.08); }
+}
+
+@keyframes receipt-pop {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 18px rgba(245,158,11,0.3); }
+  50%       { transform: scale(1.045); box-shadow: 0 0 30px rgba(245,158,11,0.55); }
+}
+
+.receipt-pop {
+  animation: receipt-pop 1.6s ease-in-out infinite;
+}
+
+/* Dynamic particle using CSS var --pi */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particle-float 15s ease-in-out infinite;
+}
+.particle:nth-child(1) { width:8px;  height:8px;  background:#00d4ff; box-shadow:0 0 14px 5px rgba(0,212,255,.6);  top:18%; left:12%;  animation-delay:0s;   }
+.particle:nth-child(2) { width:12px; height:12px; background:#ff0080; box-shadow:0 0 18px 7px rgba(255,0,128,.6); top:58%; right:18%; animation-delay:-3s;  }
+.particle:nth-child(3) { width:6px;  height:6px;  background:#7c3aed; box-shadow:0 0 12px 4px rgba(124,58,237,.6); bottom:28%; left:28%; animation-delay:-7s;  }
+.particle:nth-child(4) { width:10px; height:10px; background:#00d4ff; box-shadow:0 0 14px 5px rgba(0,212,255,.5);  top:28%; right:10%; animation-delay:-11s; }
+.particle:nth-child(5) { width:7px;  height:7px;  background:#ff0080; box-shadow:0 0 14px 5px rgba(255,0,128,.6); top:68%; left:8%;   animation-delay:-5s;  }
+.particle:nth-child(6) { width:5px;  height:5px;  background:#00d4ff; box-shadow:0 0 10px 3px rgba(0,212,255,.5);  top:45%; left:50%;  animation-delay:-9s;  }
