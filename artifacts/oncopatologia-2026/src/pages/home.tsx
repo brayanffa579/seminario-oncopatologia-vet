@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2, PlayCircle, UserPlus, X, ExternalLink } from "lucide-react";
+import { MapPin, Calendar, Users, Microscope, ChevronDown, FileText, Award, ClipboardList, BookOpen, Send, CheckCircle2, PlayCircle, UserPlus, X, ExternalLink, Coffee, UtensilsCrossed, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import bannerMain from "@assets/1_1777148830299.png";
 import heroCells from "@assets/hero-cosmos.png";
@@ -51,6 +52,51 @@ const speakers = [
     bio: "La Dra. Paola Barato es patóloga médica veterinaria y Doctora en Biotecnología en la Universidad Nacional de Colombia. Es especialista en acuicultura en la Universidad de los Llanos en Colombia. Es elegible para diplomarse del American College of Veterinary Pathologist (ACVP). Es socia fundadora y directora científica de CORPAVET, MolecularVet SAS y MolecularVet US LLC. Es consultora para la FAO, APEC, ONUDI, industria, gobiernos y universidades en salud, bioseguridad y patología de peces de agua dulce. Expresidenta de LCPG (Grupo Latino de Patología Comparada) de Davis-Thompson Foundation (2020-2022).",
     photo: speakerBarato
   }
+];
+
+const schedule = [
+  {
+    day: "Día 1",
+    date: "8 de octubre",
+    label: "Teoría",
+    sessions: [
+      { time: "9:00am – 10:30am", type: "talk", topic: "Estandarización de evaluación - criterios recuento figuras mitóticas", speaker: "Meuten" },
+      { time: "10:30am – 11:00am", type: "break", topic: "Coffee break" },
+      { time: "11:00am – 11:45am", type: "talk", topic: "Correlación citología - histopatología", speaker: "Meuten" },
+      { time: "11:45am – 12:30pm", type: "talk", topic: "Criterios de malignidad para evaluación citológica de neoplasias", speaker: "Noeme Sousa Rocha" },
+      { time: "12:30pm – 2:00pm", type: "lunch", topic: "Almuerzo" },
+      { time: "2:00pm – 3:30pm", type: "talk", topic: "Cómo mejorar lo que hacemos en citología. Correlación de patología clínica y la neoplasia", speaker: "Meuten" },
+      { time: "3:30pm – 4:00pm", type: "break", topic: "Coffee break" },
+      { time: "4:00pm – 4:45pm", type: "talk", topic: "Evaluación de márgenes incluyendo planos fasciales. Sistema de gradación con énfasis en las guías de referencia en patología", speaker: "Meuten" },
+      { time: "4:45pm – 5:30pm", type: "talk", topic: "Aproximación clínica oncológica al informe oncopatológico", speaker: "Francisco \"Pachi\" Clemente" },
+    ],
+  },
+  {
+    day: "Día 2",
+    date: "9 de octubre",
+    label: "Teoría",
+    sessions: [
+      { time: "9:00am – 10:00am", type: "talk", topic: "Actualización de la nueva edición del libro Tumors of Domestic Animals", speaker: "Meuten" },
+      { time: "10:00am – 10:30am", type: "talk", topic: "Pronóstico, ¿quién lo define?", speaker: "Meuten" },
+      { time: "10:30am – 11:00am", type: "break", topic: "Coffee break" },
+      { time: "11:00am – 11:45am", type: "talk", topic: "Uso de IHC de valor pronóstico en clínica oncológica", speaker: "Francisco \"Pachi\" Clemente" },
+      { time: "11:45am – 12:30pm", type: "talk", topic: "IHC - cáncer de mama", speaker: "Geovanni Cassali" },
+      { time: "12:30pm – 2:00pm", type: "lunch", topic: "Almuerzo" },
+      { time: "2:00pm – 2:45pm", type: "talk", topic: "Actualización del estado del arte en investigación en cáncer de mama", speaker: "Geovanni Cassali" },
+      { time: "2:45pm – 3:30pm", type: "talk", topic: "Actualización del estado del arte en investigación en osteosarcoma canino", speaker: "Noeme Sousa Rocha" },
+      { time: "3:30pm – 4:00pm", type: "break", topic: "Coffee break" },
+      { time: "4:00pm – 4:45pm", type: "talk", topic: "Actualización en tratamiento oncológico en pequeños animales", speaker: "Francisco \"Pachi\" Clemente" },
+      { time: "4:45pm – 5:30pm", type: "talk", topic: "Principales neoplasias en peces de agua dulce", speaker: "Paola Barato" },
+    ],
+  },
+  {
+    day: "Día 3",
+    date: "10 de octubre",
+    label: "Práctica · pago adicional $150.000",
+    sessions: [
+      { time: "9:00am – 12:00pm", type: "talk", topic: "Revisión de casos", speaker: "Meuten" },
+    ],
+  },
 ];
 
 export default function Home() {
@@ -179,6 +225,7 @@ export default function Home() {
             <a href="#sobre"     className="hover:text-primary transition-colors">Sobre el Evento</a>
             <a href="#video"     className="hover:text-primary transition-colors">Video</a>
             <a href="#tematica"  className="hover:text-primary transition-colors">Temática</a>
+            <a href="#programa"  className="hover:text-primary transition-colors">Programa</a>
             <a href="#ponentes"  className="hover:text-primary transition-colors">Ponentes</a>
             <a href="#precios"   className="hover:text-primary transition-colors">Precios</a>
             <a href="#resumenes" className="hover:text-primary transition-colors">Resúmenes</a>
@@ -512,6 +559,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Programación Section */}
+      <section id="programa" className="py-24 bg-card/30 border-y border-border">
+        <div className="container mx-auto px-4 max-w-5xl">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Programación</h2>
+            <p className="text-muted-foreground">Programa preliminar del seminario · 8 al 10 de octubre de 2026</p>
+          </div>
+
+          <Tabs defaultValue="Día 1" className="w-full">
+            <TabsList className="w-full flex flex-col sm:flex-row h-auto sm:h-11 mb-10 gap-1 bg-muted/60 p-1.5">
+              {schedule.map((d) => (
+                <TabsTrigger key={d.day} value={d.day} className="flex-1 py-2.5 sm:py-1.5 text-sm">
+                  <span className="font-semibold">{d.day}</span>
+                  <span className="ml-2 text-xs text-muted-foreground hidden sm:inline">{d.date}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+
+            {schedule.map((d) => (
+              <TabsContent key={d.day} value={d.day} className="mt-0">
+                <div className="text-center mb-8">
+                  <p className="text-lg font-semibold text-foreground">{d.date}</p>
+                  <p className="text-sm text-secondary font-medium">{d.label}</p>
+                </div>
+
+                <div className="space-y-3 max-w-3xl mx-auto">
+                  {d.sessions.map((s, idx) => {
+                    if (s.type === "break" || s.type === "lunch") {
+                      return (
+                        <div key={idx} className="flex items-center gap-4 py-2 px-4 rounded-lg bg-muted/40 text-muted-foreground text-sm">
+                          {s.type === "lunch" ? <UtensilsCrossed className="w-4 h-4 flex-shrink-0" /> : <Coffee className="w-4 h-4 flex-shrink-0" />}
+                          <span className="font-medium">{s.time}</span>
+                          <span className="italic">{s.topic}</span>
+                        </div>
+                      );
+                    }
+                    return (
+                      <Card key={idx} className="bg-card/60 backdrop-blur border-border/60 hover:border-primary/40 transition-colors">
+                        <CardContent className="p-5 flex flex-col sm:flex-row sm:items-start gap-4">
+                          <div className="flex items-center gap-2 text-primary font-semibold text-sm sm:w-40 flex-shrink-0">
+                            <Clock className="w-4 h-4 flex-shrink-0" />
+                            {s.time}
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-medium text-foreground leading-snug">{s.topic}</p>
+                            {s.speaker && (
+                              <p className="text-sm text-secondary mt-1">{s.speaker}</p>
+                            )}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </div>
+      </section>
+
       {/* Speakers Section */}
       <section id="ponentes" className="py-24 bg-background">
         <div className="container mx-auto px-4">
@@ -592,13 +699,14 @@ export default function Home() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[800px]">
+            <table className="w-full text-left border-collapse min-w-[960px]">
               <thead>
                 <tr className="border-b border-border text-primary">
                   <th className="p-4 font-semibold text-lg">Categoría</th>
                   <th className="p-4 font-semibold">Registro Temprano<br/><span className="text-xs text-muted-foreground font-normal">Hasta Sep 1, 2026</span></th>
                   <th className="p-4 font-semibold">Registro Regular<br/><span className="text-xs text-muted-foreground font-normal">Hasta Oct 2, 2026</span></th>
                   <th className="p-4 font-semibold">Grupos (10 personas)<br/><span className="text-xs text-muted-foreground font-normal">Hasta Oct 2, 2026</span></th>
+                  <th className="p-4 font-semibold">Práctica (30 cupos)<br/><span className="text-xs text-muted-foreground font-normal">Registro hasta Oct 2, 2026</span></th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/50">
@@ -607,29 +715,36 @@ export default function Home() {
                   <td className="p-4">$60.000 COP</td>
                   <td className="p-4">$66.000 COP</td>
                   <td className="p-4">$540.000 COP</td>
+                  <td className="p-4">$150.000 COP</td>
                 </tr>
                 <tr className="hover:bg-muted/30 transition-colors">
                   <td className="p-4 font-medium">Profesionales en Colombia</td>
                   <td className="p-4">$295.500 COP</td>
                   <td className="p-4">$325.050 COP</td>
                   <td className="p-4">$2.659.500 COP</td>
+                  <td className="p-4">$150.000 COP</td>
                 </tr>
                 <tr className="hover:bg-muted/30 transition-colors">
                   <td className="p-4 font-medium">Miembros LCPG - ACPAVET</td>
                   <td className="p-4">$174.000 COP</td>
                   <td className="p-4">$191.400 COP</td>
                   <td className="p-4">$1.566.000 COP</td>
+                  <td className="p-4">$150.000 COP</td>
                 </tr>
                 <tr className="hover:bg-muted/30 transition-colors bg-primary/5">
                   <td className="p-4 font-medium text-primary">Extranjeros (USD)</td>
                   <td className="p-4 text-primary font-semibold">USD $110</td>
                   <td className="p-4 text-primary font-semibold">USD $121</td>
                   <td className="p-4 text-primary font-semibold">USD $990</td>
+                  <td className="p-4 text-primary font-semibold">USD $50</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          
+          <p className="text-center text-sm text-muted-foreground mt-4">
+            El día de práctica (Día 3, 10 de octubre) tiene un costo adicional y un cupo limitado a 30 participantes.
+          </p>
+
           <div className="mt-12 text-center">
             <a
               href="https://forms.gle/dTzxtuDDPSCvaEeU8"
