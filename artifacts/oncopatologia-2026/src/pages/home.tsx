@@ -62,12 +62,12 @@ const schedule = [
     sessions: [
       { time: "9:00am – 10:30am", type: "talk", topic: "Estandarización de evaluación - criterios recuento figuras mitóticas", speaker: "Meuten" },
       { time: "10:30am – 11:00am", type: "break", topic: "Coffee break" },
-      { time: "11:00am – 11:45am", type: "talk", topic: "Correlación citología - histopatología", speaker: "Meuten" },
+      { time: "11:00am – 11:45am", type: "talk", topic: "Cómo mejorar nuestra labor en citología. Correlación entre patología clínica y neoplasia", speaker: "Meuten" },
       { time: "11:45am – 12:30pm", type: "talk", topic: "Criterios de malignidad para evaluación citológica de neoplasias", speaker: "Noeme Sousa Rocha" },
       { time: "12:30pm – 2:00pm", type: "lunch", topic: "Almuerzo" },
-      { time: "2:00pm – 3:30pm", type: "talk", topic: "Cómo mejorar lo que hacemos en citología. Correlación de patología clínica y la neoplasia", speaker: "Meuten" },
+      { time: "2:00pm – 3:30pm", type: "talk", topic: "Evaluación de los márgenes, incluidos los planos fasciales. Sistema de gradación con énfasis en las guías de referencia patológica", speaker: "Meuten" },
       { time: "3:30pm – 4:00pm", type: "break", topic: "Coffee break" },
-      { time: "4:00pm – 4:45pm", type: "talk", topic: "Evaluación de márgenes incluyendo planos fasciales. Sistema de gradación con énfasis en las guías de referencia en patología", speaker: "Meuten" },
+      { time: "4:00pm – 4:45pm", type: "talk", topic: "Correlación citología - histopatología (continuación)", speaker: "Meuten" },
       { time: "4:45pm – 5:30pm", type: "talk", topic: "Aproximación clínica oncológica al informe oncopatológico", speaker: "Francisco \"Pachi\" Clemente" },
     ],
   },
@@ -117,7 +117,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const target = new Date("2026-10-08T08:00:00-05:00").getTime();
+    const target = new Date("2026-10-08T09:00:00-05:00").getTime();
     const tick = () => {
       const diff = target - Date.now();
       if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
@@ -180,6 +180,35 @@ export default function Home() {
                     >
                       <X className="w-4 h-4" />
                     </button>
+                  </div>
+
+                  {/* Contador regresivo */}
+                  <div
+                    className="mb-4 rounded-xl px-4 py-4 sm:py-5 text-center"
+                    style={{ background: 'rgba(0,212,255,0.06)', border: '1px solid rgba(0,212,255,0.25)', boxShadow: '0 0 18px rgba(0,212,255,0.1)' }}
+                  >
+                    {timeLeft.days + timeLeft.hours + timeLeft.minutes + timeLeft.seconds > 0 ? (
+                      <p className="text-base sm:text-xl md:text-2xl font-semibold text-white/90 leading-relaxed">
+                        Estamos a{" "}
+                        {[
+                          { value: timeLeft.days,    label: timeLeft.days === 1 ? "día" : "días" },
+                          { value: timeLeft.hours,   label: timeLeft.hours === 1 ? "hora" : "horas" },
+                          { value: timeLeft.minutes, label: timeLeft.minutes === 1 ? "minuto" : "minutos" },
+                        ].map(({ value, label }) => (
+                          <span key={label} className="inline-flex items-baseline gap-1 mx-1 sm:mx-1.5 whitespace-nowrap">
+                            <span className="text-2xl sm:text-3xl md:text-4xl font-black tabular-nums" style={{ color: '#00d4ff', textShadow: '0 0 14px rgba(0,212,255,0.8)' }}>
+                              {String(value).padStart(2, "0")}
+                            </span>
+                            <span>{label}</span>
+                          </span>
+                        ))}
+                        {" "}del gran evento
+                      </p>
+                    ) : (
+                      <p className="text-base sm:text-xl md:text-2xl font-semibold" style={{ color: '#00d4ff', textShadow: '0 0 14px rgba(0,212,255,0.8)' }}>
+                        ¡El gran evento ya comenzó!
+                      </p>
+                    )}
                   </div>
 
                   {/* Contenedor del video con esquinas decorativas */}
@@ -564,7 +593,7 @@ export default function Home() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Programación</h2>
-            <p className="text-muted-foreground">Programa preliminar del seminario · 8 al 10 de octubre de 2026</p>
+            <p className="text-muted-foreground">Programa final del seminario · 8 al 10 de octubre de 2026</p>
           </div>
 
           <Tabs defaultValue="Día 1" className="w-full">
