@@ -60,6 +60,8 @@ const schedule = [
     date: "8 de octubre",
     label: "Teoría",
     sessions: [
+      { time: "7:30am – 8:30am", type: "logistics", topic: "Inscripciones y registro" },
+      { time: "8:30am – 9:00am", type: "logistics", topic: "Instalación evento" },
       { time: "9:00am – 10:30am", type: "talk", topic: "Estandarización de evaluación - criterios recuento figuras mitóticas", speaker: "Meuten" },
       { time: "10:30am – 11:00am", type: "break", topic: "Coffee break" },
       { time: "11:00am – 11:45am", type: "talk", topic: "Cómo mejorar nuestra labor en citología. Correlación entre patología clínica y neoplasia", speaker: "Meuten" },
@@ -92,9 +94,17 @@ const schedule = [
   {
     day: "Día 3",
     date: "10 de octubre",
-    label: "Práctica · pago adicional $150.000",
+    label: "Sábado · Posters y Práctica (pago adicional $150.000)",
     sessions: [
-      { time: "9:00am – 12:00pm", type: "talk", topic: "Revisión de casos", speaker: "Meuten" },
+      { time: "", type: "heading", topic: "Posters" },
+      { time: "7:30am – 8:00am", type: "logistics", topic: "Instalación de posters" },
+      { time: "8:00am – 9:00am", type: "talk", topic: "Evaluación de posters" },
+      { time: "9:00am – 10:15am", type: "talk", topic: "Exposición de posters" },
+      { time: "10:15am – 10:45am", type: "talk", topic: "Premiación de posters" },
+      { time: "", type: "heading", topic: "Práctica" },
+      { time: "9:00am – 10:15am", type: "talk", topic: "Práctica sesión 1" },
+      { time: "10:15am – 10:45am", type: "break", topic: "Receso" },
+      { time: "10:45am – 11:00am", type: "talk", topic: "Práctica sesión 2" },
     ],
   },
 ];
@@ -615,10 +625,17 @@ export default function Home() {
 
                 <div className="space-y-3 max-w-3xl mx-auto">
                   {d.sessions.map((s, idx) => {
-                    if (s.type === "break" || s.type === "lunch") {
+                    if (s.type === "heading") {
+                      return (
+                        <h3 key={idx} className="pt-4 first:pt-0 text-sm font-bold uppercase tracking-widest text-primary">
+                          {s.topic}
+                        </h3>
+                      );
+                    }
+                    if (s.type === "break" || s.type === "lunch" || s.type === "logistics") {
                       return (
                         <div key={idx} className="flex items-center gap-4 py-2 px-4 rounded-lg bg-muted/40 text-muted-foreground text-sm">
-                          {s.type === "lunch" ? <UtensilsCrossed className="w-4 h-4 flex-shrink-0" /> : <Coffee className="w-4 h-4 flex-shrink-0" />}
+                          {s.type === "lunch" ? <UtensilsCrossed className="w-4 h-4 flex-shrink-0" /> : s.type === "logistics" ? <ClipboardList className="w-4 h-4 flex-shrink-0" /> : <Coffee className="w-4 h-4 flex-shrink-0" />}
                           <span className="font-medium">{s.time}</span>
                           <span className="italic">{s.topic}</span>
                         </div>
